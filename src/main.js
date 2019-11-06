@@ -25,4 +25,9 @@ document.addEventListener('click', e => {
   ball.move();
 });
 
+document.addEventListener('keydown', e => {
+  console.log(e);
+  paddle.move(e);
+}); 
+
 requestAnimationFrame(gameLoop);
