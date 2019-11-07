@@ -6,7 +6,7 @@ export const ctx = canvas.getContext('2d');
 export const cw = canvas.width;
 export const ch = canvas.height;
 
-const paddle = new Paddle(cw / 2);
+export const paddle = new Paddle(cw / 2);
 const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
 
 const gameLoop = () => {
@@ -21,7 +21,7 @@ const gameLoop = () => {
 
 document.addEventListener('click', e => {
   console.log(e);
-  ball.ySpeed = -5;
+  ball.start();
   ball.move();
 });
 
