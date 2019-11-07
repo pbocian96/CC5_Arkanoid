@@ -8,6 +8,7 @@ export const ch = canvas.height;
 
 export const paddle = new Paddle(cw / 2);
 const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
+const brick = new Brick(4,5);
 
 const gameLoop = () => {
   ctx.fillStyle = 'black';
@@ -16,6 +17,7 @@ const gameLoop = () => {
   ball.onHit();
   paddle.draw();
   ball.draw();
+  brick.draw();
   requestAnimationFrame(gameLoop);
 };
 
