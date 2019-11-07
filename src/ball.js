@@ -19,8 +19,16 @@ class Ball {
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
     ctx.fill();
   }
+
   onHit() {
-    //Check if hit sth
+    if ((this.x + this.size === cw) || (this.x - this.size === 0)) {
+      this.xSpeed *= -1;
+    }
+    if (( this.y + this.size === ch)){
+      alert('Przegrałeś!');
+    } else if (this.y - this.size === 0){
+      this.ySpeed *= -1;
+    }
   }
 }
 export default Ball;
