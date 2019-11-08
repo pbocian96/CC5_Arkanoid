@@ -1,31 +1,38 @@
 import { ctx, cw, ch } from './main';
-class Brick{
+
+class Brick {
     constructor(rows,columns) {
         this.rows=rows;
         this.columns=columns;
-        this.width=100;
-        this.height=35;
+        this.width=70;
+        this.height=25;
     }
+    /*
     drawOne(x,y) {
         ctx.fillStyle = 'red';
         ctx.fillRect(x, y, this.width, this.height);
         }
-
+*/
     draw(){
         const space=10;
         let a=10;
 
         for (let i=1; i<=this.columns; i++) {
-            draw.one(a, 20);
-            let b=30+this.height;
+            //drawOne(a, 20);
+            ctx.fillStyle = 'red';
+            ctx.fillRect(a, 20, this.width, this.height);
+            let b = 30+this.height;
 
             for (let j=2; j<=this.rows; j++) {
-                draw.one(a,b);
-                b += this.height+space;
+                //drawOne(a,b);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(a, b, this.width, this.height);
+                b += (this.height+space);
             }
-            a +=this.width+space;
+            a += (this.width+space);
         }
     }
 }
+export default Brick
 
 

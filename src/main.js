@@ -1,5 +1,6 @@
 import Paddle from './paddle';
 import Ball from './ball';
+import Brick from './brick';
 
 export const canvas = document.querySelector('canvas');
 export const ctx = canvas.getContext('2d');
@@ -8,7 +9,7 @@ export const ch = canvas.height;
 
 export const paddle = new Paddle(cw / 2);
 const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
-const brick = new Brick(4,5);
+const brick = new Brick(4,7);
 
 const gameLoop = () => {
   ctx.fillStyle = 'black';
