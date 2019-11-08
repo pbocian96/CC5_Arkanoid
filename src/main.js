@@ -18,6 +18,7 @@ const gameLoop = () => {
   ball.onHit();
   paddle.draw();
   ball.draw();
+  brick.createBricks();
   brick.draw();
   requestAnimationFrame(gameLoop);
 };
