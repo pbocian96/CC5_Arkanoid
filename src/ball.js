@@ -15,11 +15,21 @@ class Ball {
     this.y += this.ySpeed;
   }
 
-  draw() {
-    ctx.fillStyle = 'blue';
+  draw() {  
+    //BALL STYLE -
+    this.gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size );
+    //this.gradient.addColorStop(0.2, 'rgba(255, 255, 255, 1)');
+    //this.gradient.addColorStop(0.3, 'rgba(0, 0, 0, 1)');
+    this.gradient.addColorStop(0.5, 'rgba(255, 127, 255, 1)');
+    this.gradient.addColorStop(0.6, 'rgba(255, 255, 255, 1)'  );
+    this.gradient.addColorStop(1.000, 'rgba(0, 0, 0, 0)');
+
+
+    ctx.fillStyle = this.gradient;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
     ctx.fill();
+    
   }
 
   start() {
