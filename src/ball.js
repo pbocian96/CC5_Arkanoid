@@ -24,11 +24,14 @@ class Ball {
     this.gradient.addColorStop(0.6, 'rgba(255, 255, 255, 1)'  );
     this.gradient.addColorStop(1.000, 'rgba(0, 0, 0, 0)');
 
-
     ctx.fillStyle = this.gradient;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-    ctx.fill();
+    ctx.fill();    
+    
+    if (!this.started) {
+      this.x = paddle.x + paddle.length/2;
+    }
     
   }
 
@@ -49,6 +52,7 @@ class Ball {
       this.ySpeed = 0;
       this.x = paddleX + paddleLength/2;
       this.y = ch - paddleHeight - this.size - 1;
+      this.started = false;
     } else if (this.y - this.size <= 0){ // odbijanie od sufitu
       this.ySpeed *= -1;
     }
