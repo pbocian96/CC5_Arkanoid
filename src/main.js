@@ -9,11 +9,12 @@ export const ch = canvas.height;
 
 export const paddle = new Paddle(cw / 2);
 const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
-const brick = new Brick(4,7);
+export const brick = new Brick(4,7);
 // background img
 const image = new Image(); 
 image.src = "src/img/bg.jpg";
 
+brick.createBricks();
 const gameLoop = () => {
   /* ctx.fillStyle = '#555';
   ctx.fillRect(0, 0, cw, ch); //tło */
@@ -22,7 +23,6 @@ const gameLoop = () => {
   ball.onHit();
   paddle.draw();
   ball.draw();
-  //brick.createBricks();
   brick.draw();
   requestAnimationFrame(gameLoop);
 };
