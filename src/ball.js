@@ -25,7 +25,7 @@ class Ball {
   start() {
     this.started = true;
     this.xSpeed = Math.random() > 0.5 ? Math.random()*3 : -Math.random()*3;
-    this.ySpeed = -5;
+    this.ySpeed = -5; 
   }
 
   onHit() {
@@ -35,6 +35,10 @@ class Ball {
 
     if (this.y + this.size >= ch){ //warunek przegranej
       alert('Przegrałeś!'); // do poprawy !
+      this.xSpeed = 0;
+      this.ySpeed = 0;
+      this.x = paddleX + paddleLength/2;
+      this.y = ch - paddleHeight - this.size - 1;
     } else if (this.y - this.size <= 0){ // odbijanie od sufitu
       this.ySpeed *= -1;
     }
