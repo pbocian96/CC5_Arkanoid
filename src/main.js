@@ -9,12 +9,17 @@ export const ch = canvas.height;
 
 export const paddle = new Paddle(cw / 2);
 const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
-const brick = new Brick(4,8);
+
+export const brick = new Brick(4,7);
+// background img
+const image = new Image(); 
+image.src = "src/img/bg.jpg";
 
 brick.createBricks();
 const gameLoop = () => {
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, cw, ch); //tło
+  /* ctx.fillStyle = '#555';
+  ctx.fillRect(0, 0, cw, ch); //tło */
+  ctx.drawImage(image, 0, 0, image.width, image.height, 0 ,0, cw, ch);
   ball.move(0, 0);
   ball.onHit();
   paddle.draw();
@@ -25,8 +30,11 @@ const gameLoop = () => {
 
 document.addEventListener('click', e => {
   console.log(e);
-  ball.start();
-  ball.move();
+  if(ball.started === false)  // START tylko raz
+  {
+    ball.start();
+    ball.move();
+  }
 });
 
 requestAnimationFrame(gameLoop);
