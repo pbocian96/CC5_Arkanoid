@@ -46,7 +46,9 @@ class Brick {
     }
     
     delete(n) {
-        this.allBricks.splice(n,1);
+        if (n != this.allBricks.length - 1){ //zmieniłam, bo nie działa gdy chce usunąć ostatni brick z tablicy
+            this.allBricks.splice(n,1);
+        }
     }
 }
 export default Brick
