@@ -4,43 +4,48 @@ class Brick {
     constructor(rows,columns) {
         this.rows=rows;
         this.columns=columns;
-        this.width=70;
-        this.height=25;
+        this.width=60;
+        this.height=20;
         this.allBricks=[];
     }
-    /*
-    drawOne(x,y) {
-        ctx.fillStyle = 'red';
-        ctx.fillRect(x, y, this.width, this.height);
-        }*/
 
     createBricks(){
-        const space=10;
-        let a=10;
+        const space=8;
+        let a=20;
 
         for (let i=1; i<=this.columns; i++) {
-            //drawOne(a, 20);
-            this.allBricks.push([a,20]);
-            let b = 30+this.height;
+            this.allBricks.push([a,20,1]);
+            let b = 28+this.height;
 
             for (let j=2; j<=this.rows; j++) {
-                //drawOne(a,b);
-                this.allBricks.push([a,b]);
+                this.allBricks.push([a,b,1]);
                 b += (this.height+space);
             }
             a += (this.width+space);
         }
+        for (let i=1; i<=this.allBricks.length; i=i+2) {
+            this.allBricks[i][2]=2;
+        }
     }
     draw(){
         this.allBricks.forEach(one=>{
-            ctx.fillStyle = 'red';
-            ctx.fillRect(one[0], one[1], this.width, this.height);
+            if (one[2]==2) {
+                ctx.fillStyle = 'silver';
+                ctx.fillRect(one[0], one[1], this.width, this.height);
+                ctx.fillStyle = 'black';
+                ctx.strokeRect(one[0], one[1], this.width, this.height);
+            }
+            else {
+                ctx.fillStyle = 'maroon';
+                ctx.fillRect(one[0], one[1], this.width, this.height);
+                ctx.fillStyle = 'black';
+                ctx.strokeRect(one[0], one[1], this.width, this.height);
+            }
+            
         })
     }
     
     delete(n) {
-        ctx.fillStyle = 'black';
-        ctx.fillRect(this.allBricks[n][0], this.allBricks[n][1], this.width, this.height);
         this.allBricks.splice(n,1);
     }
 }
