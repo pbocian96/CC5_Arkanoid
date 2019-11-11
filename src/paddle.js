@@ -77,7 +77,7 @@ class Paddle {
     if (this.loopIndex >= this.cycleLoop.length){
       this.loopIndex = 0;
     }
-    console.log(this.loopIndex);
+    //console.log(this.loopIndex);
 
     
   }
