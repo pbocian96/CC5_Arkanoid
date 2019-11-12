@@ -51,28 +51,34 @@ class Ball {
     let brickHeight = brick.height;
     
     // ballCollision
-    for (let i=0; i < bricksArray.length; i++) {
-      if ((this.y - this.size <= bricksArray[i][1] + brickHeight) // bottom
-        && (this.x >= bricksArray[i][0])
-        && (this.x <= bricksArray[i][0] + brickWidth)) {
+      for (let i=0; i < bricksArray.length; i++){
+        if ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= this.size) //bottom
+        && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
+        && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
           this.ySpeed *= -1;
-      } 
-      if ((this.y + this.size >= bricksArray[i][1]) // top
-        && (this.x >= bricksArray[i][0])
-        && (this.x <= bricksArray[i][0] + brickWidth)) {
+          brick.delete(i);
+        }
+        if ((Math.abs(bricksArray[i][1] - this.y) <= this.size) //top
+        && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
+        && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
           this.ySpeed *= -1;
-      }
-      if ((this.x + this.size >= bricksArray[i][0]) // left
-        && (this.y >= bricksArray[i][1])
-        && (this.y <= bricksArray[i][1] + brickHeight)){
+          brick.delete(i);
+        }
+        if ((Math.abs(bricksArray[i][0] - this.x) <= this.size) //left
+        && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
+        && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
           this.xSpeed *= -1;
-      }
-      if ((this.x - this.size <= bricksArray[i][0] + brickWidth) // right
-        && (this.y >= bricksArray[i][1])
-        && (this.y <= bricksArray[i][1] + brickHeight)) {
+          brick.delete(i);
+        }
+        if ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= this.size) //right
+        && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
+        && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
           this.xSpeed *= -1;
+          brick.delete(i);
+        }
       }
-    }
+    
+   
 
     if (this.y + this.size >= ch){ // warunek przegranej
       alert('Przegrałeś!'); 
