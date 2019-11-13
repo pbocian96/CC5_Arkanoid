@@ -1,4 +1,4 @@
-import { ctx, cw, ch, paddle, brick} from './main';
+import { ctx, cw, ch, paddle, brick, powerUp} from './main';
 
 class Ball {
   constructor(x, height) {
@@ -56,24 +56,40 @@ class Ball {
         && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
         && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
           this.ySpeed *= -1;
+          if (bricksArray[i][3]==2){
+            powerUp.hit=1;
+            powerUp.n=i;
+          }
           brick.delete(i);
         }
         if ((Math.abs(bricksArray[i][1] - this.y) <= this.size) //top
         && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
         && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
           this.ySpeed *= -1;
+          if (bricksArray[i][3]==2){
+            powerUp.hit=1;
+            powerUp.n=i;
+          }
           brick.delete(i);
         }
         if ((Math.abs(bricksArray[i][0] - this.x) <= this.size) //left
         && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
         && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
           this.xSpeed *= -1;
+          if (bricksArray[i][3]==2){
+            powerUp.hit=1;
+            powerUp.n=i;
+          }
           brick.delete(i);
         }
         if ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= this.size) //right
         && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
         && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
           this.xSpeed *= -1;
+          if (bricksArray[i][3]==2){
+            powerUp.hit=1;
+            powerUp.n=i;
+          }
           brick.delete(i);
         }
       }

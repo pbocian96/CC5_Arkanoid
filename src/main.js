@@ -1,6 +1,7 @@
 import Paddle from './paddle';
 import Ball from './ball';
 import Brick from './brick';
+import PowerUp from './powerUp';
 
 export const canvas = document.querySelector('canvas');
 export const ctx = canvas.getContext('2d');
@@ -11,6 +12,7 @@ export const paddle = new Paddle(cw / 2);
 const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
 
 export const brick = new Brick(5,8);
+export const powerUp = new PowerUp();
 // background img
 const image = new Image(); 
 image.src = "src/img/bg.jpg";
@@ -25,6 +27,7 @@ const gameLoop = () => {
   paddle.draw();
   ball.draw();
   brick.draw();
+  powerUp.draw();
   requestAnimationFrame(gameLoop);
 };
 
