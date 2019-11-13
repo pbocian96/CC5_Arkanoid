@@ -1,4 +1,4 @@
-import { ctx, cw, ch, paddle, brick} from './main';
+import { ctx, cw, ch, paddle, brick, powerUp} from './main';
 
 class Ball {
   constructor(x, height) {
@@ -50,61 +50,46 @@ class Ball {
     let brickWidth = brick.width;
     let brickHeight = brick.height;
     
-    // ballCollision - odległości
-      // for (let i=0; i < bricksArray.length; i++){
-
-      //   if ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= this.size) //bottom
-      //   && ((Math.abs(bricksArray[i][0] + brickWidth - this.x - this.size) <= brickWidth) 
-      //   && ((Math.abs(bricksArray[i][0] - this.x + this.size) <= brickWidth)))){
-      //     this.ySpeed *= -1;
-      //     brick.delete(i);
-      //   }
-      //   if ((Math.abs(bricksArray[i][1] - this.y) <= this.size) //top
-      //   && ((Math.abs(bricksArray[i][0] + brickWidth - this.x - this.size) <= brickWidth) 
-      //   && ((Math.abs(bricksArray[i][0] - this.x + this.size) <= brickWidth)))){
-      //     this.ySpeed *= -1;
-      //     brick.delete(i);
-      //   }
-      //   if ((Math.abs(bricksArray[i][0] - this.x) <= this.size) //left
-      //   && ((Math.abs(bricksArray[i][1] + brickHeight - this.y + this.size) <= brickHeight) 
-      //   && ((Math.abs(bricksArray[i][1] - this.y - this.size) <= brickHeight)))){
-      //     this.xSpeed *= -1;
-      //     brick.delete(i);
-      //   }
-      //   if ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= this.size) //right
-      //   && ((Math.abs(bricksArray[i][1] + brickHeight - this.y + this.size) <= brickHeight) 
-      //   && ((Math.abs(bricksArray[i][1] - this.y - this.size) <= brickHeight)))){
-      //     this.xSpeed *= -1;
-      //     brick.delete(i);
-      //   }
-      // }
-
-    //ballCollision - wektorowo
-    for (let i=0; i < bricksArray.length; i++){
-
-       if((this.x + this.xSpeed + this.size >= bricksArray[i][0])
-       && (this.x + this.xSpeed - this.size <= bricksArray[i][0] + brickWidth)
-       && (this.y + this.ySpeed + this.size >= bricksArray[i][1])
-       && (this.y + this.ySpeed - this.size <= bricksArray[i][1] + brickHeight)){
-
-        if ((this.x + this.size < bricksArray[i][0]) //left
-        && (this.x + this.xSpeed + this.size >= bricksArray[i][0])){
-          this.xSpeed *= -1;
-          brick.delete(i);
-        }
-        if ((this.x - this.size > bricksArray[i][0] + brickWidth) //right
-        && (this.x + this.xSpeed - this.size <= bricksArray[i][0] + brickWidth)){
-          this.xSpeed *= -1;
-          brick.delete(i);
-        }
-        if ((this.y + this.size < bricksArray[i][1]) //top
-        && (this.y - this.ySpeed + this.size >= bricksArray[i][1])){
+    // ballCollision
+      for (let i=0; i < bricksArray.length; i++){
+        if ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= this.size) //bottom
+        && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
+        && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
           this.ySpeed *= -1;
+          if (bricksArray[i][3]==2){
+            powerUp.hit=1;
+            powerUp.n=i;
+          }
           brick.delete(i);
         }
-        if ((this.y - this.size > bricksArray[i][1] + brickHeight) //bottom
-        && (this.y + this.ySpeed - this.size <= bricksArray[i][1] + brickHeight)){
+        if ((Math.abs(bricksArray[i][1] - this.y) <= this.size) //top
+        && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
+        && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
           this.ySpeed *= -1;
+          if (bricksArray[i][3]==2){
+            powerUp.hit=1;
+            powerUp.n=i;
+          }
+          brick.delete(i);
+        }
+        if ((Math.abs(bricksArray[i][0] - this.x) <= this.size) //left
+        && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
+        && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
+          this.xSpeed *= -1;
+          if (bricksArray[i][3]==2){
+            powerUp.hit=1;
+            powerUp.n=i;
+          }
+          brick.delete(i);
+        }
+        if ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= this.size) //right
+        && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
+        && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
+          this.xSpeed *= -1;
+          if (bricksArray[i][3]==2){
+            powerUp.hit=1;
+            powerUp.n=i;
+          }
           brick.delete(i);
         }
       }
