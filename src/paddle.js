@@ -4,7 +4,7 @@ class Paddle {
   constructor(x) {
     this.x = x;
     this.length = 100;
-    this.height = 30;
+    this.height = 20;
     this.spaceFromBorder = 10;
     this.xSpeed = 20;
     this.friction = 0.9;
@@ -12,8 +12,8 @@ class Paddle {
     this.velocity = 0;
 
     this.image = new Image(); 
-    this.image.src = "src/img/paddle_ani_04.png";
-    this.cycleLoop = [0, 0, 30, 30, 60, 60, 90, 90, 120, 120, 150, 150, 180, 180, 150, 150, 120, 90, 90, 60, 60, 30, 30];
+    this.image.src = "src/img/paddle_ani_05.png";
+    this.cycleLoop = [0, 0, 30, 30, 60, 60, 90, 90, 120, 120, 90, 90, 60, 60, 30, 30];
     this.loopIndex = 0;
 
     this.rightPressed = false;
@@ -67,8 +67,8 @@ class Paddle {
       this.image,
       0, 
       this.cycleLoop[this.loopIndex], 
-      this.length, 
-      this.height, 
+      this.image.width, 
+      this.image.height/5, 
       this.x, 
       ch - this.height, 
       this.length, 
