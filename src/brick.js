@@ -30,13 +30,13 @@ class Brick {
     draw(){
         this.allBricks.forEach(one=>{
             if (one[2]==2) {
-                ctx.fillStyle = 'silver';
+                ctx.fillStyle = 'maroon';
                 ctx.fillRect(one[0], one[1], this.width, this.height);
                 ctx.fillStyle = 'black';
                 ctx.strokeRect(one[0], one[1], this.width, this.height);
             }
             else {
-                ctx.fillStyle = 'maroon';
+                ctx.fillStyle = 'silver';
                 ctx.fillRect(one[0], one[1], this.width, this.height);
                 ctx.fillStyle = 'black';
                 ctx.strokeRect(one[0], one[1], this.width, this.height);
@@ -46,7 +46,14 @@ class Brick {
     }
     
     delete(n) {
-        if (n != this.allBricks.length - 1){ //zmieniłam, bo nie działa gdy chce usunąć ostatni brick z tablicy
+        if (this.allBricks[n][2]==2) {
+            ctx.fillStyle = 'silver';
+            ctx.fillRect(this.allBricks[n][0], this.allBricks[n][1], this.width, this.height);
+            ctx.fillStyle = 'black';
+            ctx.strokeRect(this.allBricks[n][0], this.allBricks[n][1], this.width, this.height);
+            this.allBricks[n][2]=1;
+        }
+        else {
             this.allBricks.splice(n,1);
         }
     }
