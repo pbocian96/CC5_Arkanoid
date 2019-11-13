@@ -14,17 +14,20 @@ class Brick {
         let a=20;
 
         for (let i=1; i<=this.columns; i++) {
-            this.allBricks.push([a,20,1]);
+            this.allBricks.push([a,20,1,1]); // allBricks[][4]-bricks z powerup
             let b = 28+this.height;
 
             for (let j=2; j<=this.rows; j++) {
-                this.allBricks.push([a,b,1]);
+                this.allBricks.push([a,b,1,1]);
                 b += (this.height+space);
             }
             a += (this.width+space);
         }
-        for (let i=1; i<=this.allBricks.length; i=i+2) {
+        for (let i=1; i<this.allBricks.length; i=i+2) {
             this.allBricks[i][2]=2;
+        }
+        for (let i=0; i<this.allBricks.length; i=i+2) {
+            this.allBricks[i][3]=2;
         }
     }
     draw(){
