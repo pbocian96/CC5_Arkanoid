@@ -138,6 +138,11 @@ class Ball {
         brick.delete(i);
       }
     }
+    if (bricksArray.length === 0) {
+      alert('Wygrałeś!');
+      this.xSpeed = 0;
+      this.ySpeed = 0;
+    }
   }
 
     if (this.y + this.size >= ch){ // warunek przegranej
@@ -162,6 +167,7 @@ class Ball {
       && (this.x - this.size < paddleX + paddleLength)
       && this.started){
       this.ySpeed *= -1;
+      this.xSpeed += Math.random() > 0.5 ? -2*Math.random() : 2*Math.random();
     }
   }
 }

@@ -11,7 +11,7 @@ export const cw = canvas.width;
 export const ch = canvas.height;
 
 export const paddle = new Paddle(cw / 2);
-const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
+export const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
 
 export const brick = new Brick(5,8);
 export const powerUp1 = new PowerUp_1();
@@ -25,6 +25,7 @@ const image = new Image();
 image.src = "src/img/bg.jpg";
 
 brick.createBricks();
+
 const gameLoop = () => {
   /* ctx.fillStyle = '#555';
   ctx.fillRect(0, 0, cw, ch); //tło */
