@@ -7,6 +7,12 @@ class Brick {
         this.width=60;
         this.height=20;
         this.allBricks=[];
+
+        //style
+        this.image = new Image(); 
+        this.image.src = "src/img/bricks_ani01.png";
+        this.cycleLoop = [0, 50, 100, 100, 100, 100, 150, 150, 150, 150, 100, 100, 100, 100, 50, 50, 50, 50, 0, 0, 0, 0];
+        this.loopIndex = 0;
     }
 
     createBricks(){
@@ -33,19 +39,40 @@ class Brick {
     draw(){
         this.allBricks.forEach(one=>{
             if (one[2]==2) {
-                ctx.fillStyle = 'maroon';
-                ctx.fillRect(one[0], one[1], this.width, this.height);
-                ctx.fillStyle = 'black';
-                ctx.strokeRect(one[0], one[1], this.width, this.height);
+                
+                ctx.drawImage(
+                    this.image,
+                    this.image.width/2, 
+                    this.cycleLoop[this.loopIndex], 
+                    this.image.width/2, 
+                    this.image.height/5, 
+                    one[0], 
+                    one[1], 
+                    this.width, 
+                    this.height
+                  ); 
             }
             else {
-                ctx.fillStyle = 'silver';
-                ctx.fillRect(one[0], one[1], this.width, this.height);
-                ctx.fillStyle = 'black';
-                ctx.strokeRect(one[0], one[1], this.width, this.height);
+                
+                ctx.drawImage(
+                    this.image,
+                    0, 
+                    this.cycleLoop[this.loopIndex], 
+                    this.image.width/2, 
+                    this.image.height/5, 
+                    one[0], 
+                    one[1], 
+                    this.width, 
+                    this.height
+                  ); 
             }
             
         })
+        
+        this.loopIndex++;
+        if (this.loopIndex >= this.cycleLoop.length){
+            this.loopIndex = 0;
+        }
     }
     
     delete(n) {
@@ -60,6 +87,11 @@ class Brick {
             this.allBricks.splice(n,1);
         }
     }
+
+    brickStyle(posX, posY) {
+        
+    }
+
 }
 export default Brick
 
