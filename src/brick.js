@@ -1,4 +1,4 @@
-import { ctx, cw, ch } from './main';
+import { ctx, cw, ch, score } from './main';
 
 class Brick {
     constructor(rows,columns) {
@@ -82,9 +82,11 @@ class Brick {
             ctx.fillStyle = 'black';
             ctx.strokeRect(this.allBricks[n][0], this.allBricks[n][1], this.width, this.height);
             this.allBricks[n][2]=1;
+            score.scoreCount += 200;
         }
         else {
             this.allBricks.splice(n,1);
+            score.scoreCount += 100;
         }
     }
 

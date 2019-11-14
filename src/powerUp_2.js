@@ -1,4 +1,4 @@
-import { ctx, cw, ch, brick, paddle, ball } from './main';
+import { ctx, cw, ch, brick, paddle, ball, score } from './main';
 import PowerUp from './powerUp';
 
 //catch
@@ -20,6 +20,7 @@ class PowerUp_2 extends PowerUp {
                 this.hit = 0;
                 this.ySpeed = 1;
                 this.n = 0;
+                score.scoreCount += 500;
             }
 
             if (y+this.ySpeed >= ch-paddle.height && x > paddle.x && x < paddle.x+paddle.length) {

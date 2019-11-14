@@ -1,4 +1,4 @@
-import { ctx, cw, ch, paddle, brick, allPowerUps} from './main';
+import { ctx, cw, ch, paddle, brick, allPowerUps, score} from './main';
 
 class Ball {
   constructor(x, height) {
@@ -172,6 +172,7 @@ class Ball {
       && this.started){
       this.ySpeed *= -1;
       this.xSpeed += Math.random() > 0.5 ? -Math.random() : Math.random();
+      score.scoreCount += 10;
     }
   }
 }

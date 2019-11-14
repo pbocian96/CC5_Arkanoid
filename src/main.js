@@ -1,6 +1,7 @@
 import Paddle from './paddle';
 import Ball from './ball';
 import Brick from './brick';
+import Score from './score';
 import PowerUp_1 from './powerUp_1';
 import PowerUp_2 from './powerUp_2';
 //import PowerUp_3 from './powerUp_3';
@@ -20,6 +21,8 @@ export const powerUp2 = new PowerUp_2();
 export const allPowerUps =[];
 allPowerUps.push(powerUp1, powerUp2/*,powerUp3*/);
 
+export const score = new Score();
+
 // background img
 const image = new Image(); 
 image.src = "src/img/bg.jpg";
@@ -36,6 +39,7 @@ const gameLoop = () => {
   ball.draw();
   brick.draw();
   allPowerUps.forEach(one => {one.draw()});
+  score.draw();
   requestAnimationFrame(gameLoop);
 };
 
