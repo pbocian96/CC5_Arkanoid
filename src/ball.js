@@ -32,12 +32,20 @@ class Ball {
     if (!this.started) {
       this.x = paddle.x + paddle.length/2;
     }
-    
   }
+  
   start() {
     this.started = true;
     this.xSpeed =  Math.random() > 0.5 ? Math.random()*3 : -Math.random()*3;
     this.ySpeed = -5; 
+  }
+
+  stop() { //powrót piłki do pozycji startowej
+    this.xSpeed = 0;
+    this.ySpeed = 0;
+    this.x = paddle.x + paddle.length/2;
+    this.y = ch - paddle.height - this.size;
+    this.started = false;
   }
 
   onHit() {
@@ -138,7 +146,7 @@ class Ball {
         brick.delete(i);
       }
     }
-    if (bricksArray.length === 0) {
+    if (bricksArray.length === 0) { // Wygrana jeśli wzystkie bricki zostaną usunięte
       alert('Wygrałeś!');
       this.xSpeed = 0;
       this.ySpeed = 0;
@@ -147,11 +155,7 @@ class Ball {
 
     if (this.y + this.size >= ch){ // warunek przegranej
       alert('Przegrałeś!'); 
-      this.xSpeed = 0;
-      this.ySpeed = 0;
-      this.x = paddleX + paddleLength/2;
-      this.y = ch - paddleHeight - this.size - 1;
-      this.started = false;
+      this.stop();
     } else if (this.y - this.size <= 0){ // odbijanie od sufitu
       this.ySpeed *= -1;
     }
@@ -167,7 +171,7 @@ class Ball {
       && (this.x - this.size < paddleX + paddleLength)
       && this.started){
       this.ySpeed *= -1;
-      this.xSpeed += Math.random() > 0.5 ? -2*Math.random() : 2*Math.random();
+      this.xSpeed += Math.random() > 0.5 ? -Math.random() : Math.random();
     }
   }
 }

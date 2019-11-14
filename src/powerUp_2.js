@@ -23,11 +23,7 @@ class PowerUp_2 extends PowerUp {
             }
 
             if (y+this.ySpeed >= ch-paddle.height && x > paddle.x && x < paddle.x+paddle.length) {
-                ball.x = paddle.x + paddle.length / 2;
-                ball.y =  ch - paddle.height - ball.size - 1;
-                ball.xSpeed = 0;
-                ball.ySpeed = 0;
-                ball.started = false;
+                ball.stop()
             }
         }
     }

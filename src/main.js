@@ -41,8 +41,7 @@ const gameLoop = () => {
 
 document.addEventListener('click', e => {
   console.log(e);
-  if(ball.started === false)  // START tylko raz
-  {
+  if(ball.started === false){
     ball.start();
     ball.move();
   }
