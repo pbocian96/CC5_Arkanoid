@@ -140,9 +140,6 @@ class Ball {
     }
   }
 
-
-
-
     if (this.y + this.size >= ch){ // warunek przegranej
       alert('Przegrałeś!'); 
       this.xSpeed = 0;
