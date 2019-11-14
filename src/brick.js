@@ -26,7 +26,7 @@ class Brick {
         for (let i=1; i<this.allBricks.length; i=i+2) {
             this.allBricks[i][2]=2;
         }
-        for (let i=0; i<this.allBricks.length; i=i+2) {
+        for (let i=0; i<this.allBricks.length; i=i+2) {//bricksy z powerup
             this.allBricks[i][3]=2;
         }
     }

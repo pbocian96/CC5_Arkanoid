@@ -1,4 +1,4 @@
-import { ctx, cw, ch, paddle, brick, powerUp} from './main';
+import { ctx, cw, ch, paddle, brick, allPowerUps} from './main';
 
 class Ball {
   constructor(x, height) {
@@ -106,8 +106,8 @@ class Ball {
         && (this.x + this.xSpeed + this.size >= bricksArray[i][0])){
           this.xSpeed *= -1;
           if (bricksArray[i][3]==2){
-            powerUp.hit=1;
-            powerUp.n=i;
+            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
           }
           brick.delete(i);
         }
@@ -115,8 +115,8 @@ class Ball {
         && (this.x + this.xSpeed - this.size <= bricksArray[i][0] + brickWidth)){
           this.xSpeed *= -1;
           if (bricksArray[i][3]==2){
-            powerUp.hit=1;
-            powerUp.n=i;
+            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
           }
           brick.delete(i);
         }
@@ -125,8 +125,8 @@ class Ball {
           this.ySpeed *= -1;
           brick.delete(i);
           if (bricksArray[i][3]==2){
-            powerUp.hit=1;
-            powerUp.n=i;
+            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
           }
           brick.delete(i);
         }
@@ -134,8 +134,8 @@ class Ball {
         && (this.y + this.ySpeed - this.size <= bricksArray[i][1] + brickHeight)){
           this.ySpeed *= -1;
           if (bricksArray[i][3]==2){
-            powerUp.hit=1;
-            powerUp.n=i;
+            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
           }
           brick.delete(i);
         }
