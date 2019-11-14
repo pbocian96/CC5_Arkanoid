@@ -50,50 +50,98 @@ class Ball {
     let brickHeight = brick.height;
     
     // ballCollision
-      for (let i=0; i < bricksArray.length; i++){
-        if ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= this.size) //bottom
-        && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
-        && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
-          this.ySpeed *= -1;
-          if (bricksArray[i][3]==2){
-            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
-            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
-          }
-          brick.delete(i);
-        }
-        if ((Math.abs(bricksArray[i][1] - this.y) <= this.size) //top
-        && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
-        && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
-          this.ySpeed *= -1;
-          if (bricksArray[i][3]==2){
-            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
-            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
-          }
-          brick.delete(i);
-        }
-        if ((Math.abs(bricksArray[i][0] - this.x) <= this.size) //left
-        && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
-        && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
-          this.xSpeed *= -1;
-          if (bricksArray[i][3]==2){
-            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
-            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
-          }
-          brick.delete(i);
-        }
-        if ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= this.size) //right
-        && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
-        && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
-          this.xSpeed *= -1;
-          if (bricksArray[i][3]==2){
-            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
-            allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
-          }
-          brick.delete(i);
-        }
-      }
+      // for (let i=0; i < bricksArray.length; i++){
+      //   if ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= this.size) //bottom
+      //   && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
+      //   && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
+      //     this.ySpeed *= -1;
+      //     if (bricksArray[i][3]==2){
+      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
+      //     }
+      //     brick.delete(i);
+      //   }
+      //   if ((Math.abs(bricksArray[i][1] - this.y) <= this.size) //top
+      //   && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
+      //   && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
+      //     this.ySpeed *= -1;
+      //     if (bricksArray[i][3]==2){
+      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
+      //     }
+      //     brick.delete(i);
+      //   }
+      //   if ((Math.abs(bricksArray[i][0] - this.x) <= this.size) //left
+      //   && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
+      //   && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
+      //     this.xSpeed *= -1;
+      //     if (bricksArray[i][3]==2){
+      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
+      //     }
+      //     brick.delete(i);
+      //   }
+      //   if ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= this.size) //right
+      //   && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
+      //   && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
+      //     this.xSpeed *= -1;
+      //     if (bricksArray[i][3]==2){
+      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
+      //     }
+      //     brick.delete(i);
+      //   }
+      // }
     
-   
+   // ballCollision - wektorowo
+   for (let i=0; i < bricksArray.length; i++){
+
+    if((this.x + this.xSpeed + this.size >= bricksArray[i][0])
+    && (this.x + this.xSpeed - this.size <= bricksArray[i][0] + brickWidth)
+    && (this.y + this.ySpeed + this.size >= bricksArray[i][1])
+    && (this.y + this.ySpeed - this.size <= bricksArray[i][1] + brickHeight)){
+
+     if ((this.x + this.size < bricksArray[i][0]) //left
+     && (this.x + this.xSpeed + this.size >= bricksArray[i][0])){
+      this.xSpeed *= -1;
+      if (bricksArray[i][3]==2){
+        allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+        allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
+      }
+      brick.delete(i);
+      }
+      if ((this.x - this.size > bricksArray[i][0] + brickWidth) //right
+      && (this.x + this.xSpeed - this.size <= bricksArray[i][0] + brickWidth)){
+        this.xSpeed *= -1;
+        if (bricksArray[i][3]==2){
+          allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+          allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
+        }
+        brick.delete(i);
+      }
+      if ((this.y + this.size < bricksArray[i][1]) //top
+      && (this.y - this.ySpeed + this.size >= bricksArray[i][1])){
+        this.ySpeed *= -1;
+        if (bricksArray[i][3]==2){
+          allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+          allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
+        }
+        brick.delete(i);
+      }
+      if ((this.y - this.size > bricksArray[i][1] + brickHeight) //bottom
+      && (this.y + this.ySpeed - this.size <= bricksArray[i][1] + brickHeight)){
+        this.ySpeed *= -1;
+        if (bricksArray[i][3]==2){
+          allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
+          allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
+        }
+        brick.delete(i);
+      }
+    }
+  }
+
+
+
 
     if (this.y + this.size >= ch){ // warunek przegranej
       alert('Przegrałeś!'); 
