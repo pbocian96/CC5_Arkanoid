@@ -4,7 +4,7 @@ import Brick from './brick';
 import Score from './score';
 import PowerUp_1 from './powerUp_1';
 import PowerUp_2 from './powerUp_2';
-//import PowerUp_3 from './powerUp_3';
+import PowerUp_3 from './powerUp_3';
 
 export const canvas = document.querySelector('canvas');
 export const ctx = canvas.getContext('2d');
@@ -17,9 +17,9 @@ export const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
 export const brick = new Brick(5,8);
 export const powerUp1 = new PowerUp_1();
 export const powerUp2 = new PowerUp_2();
-//export const powerUp3 = new PowerUp_3();
+export const powerUp3 = new PowerUp_3();
 export const allPowerUps =[];
-allPowerUps.push(powerUp1, powerUp2/*,powerUp3*/);
+allPowerUps.push(powerUp1, powerUp2, powerUp3);
 
 export const score = new Score();
 
