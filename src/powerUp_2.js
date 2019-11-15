@@ -20,11 +20,13 @@ class PowerUp_2 extends PowerUp {
                 this.hit = 0;
                 this.ySpeed = 1;
                 this.n = 0;
-                score.scoreCount += 500;
             }
 
             if (y+this.ySpeed >= ch-paddle.height && x > paddle.x && x < paddle.x+paddle.length) {
+                score.scoreCount += 500; // punkty za złapanie powerUpa
+                this.reset();   
                 ball.stop()
+                
             }
         }
     }

@@ -8,11 +8,18 @@ class PowerUp_1 extends PowerUp {
             const x = brick.allBricks[this.n][0]+30;
             let y = brick.allBricks[this.n][1]+10;
             
-            ctx.fillStyle = 'yellow';
-            ctx.beginPath();
-            ctx.arc(x, y+this.ySpeed, this.size, 0, 2 * Math.PI);
-            ctx.fill(); 
+            this.gradient = ctx.createRadialGradient(x, y + this.ySpeed, 0, x, y + this.ySpeed, this.size*2 );
+            this.gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0)');
+            //this.gradient.addColorStop(0.3, 'rgba(0, 0, 0, 1)');
+            this.gradient.addColorStop(0.5, 'rgba(255, 127, 255, 1)');
+            this.gradient.addColorStop(0.6, 'rgba(0, 255, 255, 1)');
+            this.gradient.addColorStop(1.000, 'rgba(0, 0, 0, 0)');
 
+            ctx.fillStyle = this.gradient;
+            ctx.beginPath();
+            ctx.arc(x, y + this.ySpeed, this.size*2, 0, 2 * Math.PI);
+            ctx.fill();    
+            
             this.ySpeed +=2;
 
             if (y+this.ySpeed >= ch) {
@@ -20,12 +27,18 @@ class PowerUp_1 extends PowerUp {
             }
             if (y+this.ySpeed >= ch-paddle.height && x > paddle.x && x < paddle.x+paddle.length) {
                 this.reset();
-
-                ball.size *= 1.3;
-                ball.ySpeed *= 0.7;
-                ball.xSpeed *= 0.7;
+                score.scoreCount += 1000;   // punkty za złapanie powerUpa
                 
-                score.scoreCount += 1000;
+                if (ball.size == 10) {
+                    ball.size += 10;
+                    ball.xSpeed /= 2;
+                    ball.ySpeed /= 2;
+                    setTimeout( ()=> {
+                        ball.size -= 10;
+                        ball.xSpeed *= 2;
+                        ball.ySpeed *= 2;
+                    },8000);
+                }
             }
         }
     }
