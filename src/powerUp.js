@@ -5,6 +5,14 @@ class PowerUp {
         this.ySpeed = 1;
         this.hit = 0;
         this.n = 0; 
+        this.size = 7;
+    }
+
+    reset() 
+    {
+        this.hit = 0;
+        this.ySpeed = 1;
+        this.n = 0;
     }
     
 
