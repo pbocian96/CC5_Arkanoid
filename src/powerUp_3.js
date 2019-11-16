@@ -1,4 +1,4 @@
-import { ctx, cw, ch, brick, paddle } from './main';
+import { ctx, cw, ch, brick, paddle, score } from './main';
 import PowerUp from './powerUp';
 
 class PowerUp_3 extends PowerUp {
