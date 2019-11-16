@@ -1,11 +1,22 @@
 body {
-  background-color: antiquewhite;
+  margin: 0 0 0 0;
+  background-image: url(./src/img/bg.jpg);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 canvas {
   border: fuchsia solid 5px;
+}
+
+#wrapperbg {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(18px) brightness(60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
