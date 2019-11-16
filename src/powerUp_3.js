@@ -29,16 +29,19 @@ class PowerUp_3 extends PowerUp {
 
                 if (paddle.length==100) {
                     paddle.length +=50;
+                    paddle.x -= 25;
                     this.hit = 0;
                     this.ySpeed = 1;
                     this.n = 0;
                     setTimeout( ()=> {
                         paddle.length -= 50;
+                        paddle.x += 25;
                     },7000);
                 }
                 else {
                     setTimeout( ()=> {
                         paddle.length -= 50;
+                        paddle.x += 25;
                     },7000);
                 }
 
