@@ -1,5 +1,6 @@
 import { ctx, cw, ch, brick, paddle, ball, score } from './main';
 import PowerUp from './powerUp';
+import Ball from './ball';
 
 //catch
 class PowerUp_2 extends PowerUp { 
@@ -29,7 +30,7 @@ class PowerUp_2 extends PowerUp {
 
             if (y+this.ySpeed >= ch-paddle.height && x > paddle.x && x < paddle.x+paddle.length) {
                 score.scoreCount += 500; // punkty za złapanie powerUpa
-                this.reset();   
+                this.reset();
                 ball.stop()
             }
         }

@@ -39,14 +39,20 @@ class PowerUp_1 extends PowerUp {
                 score.scoreCount += 1000;   // punkty za złapanie powerUpa
                 
                 if (ball.size == 10) {
+                    if (!ball.started){
+                        ball.y -= 10;
+                    }
                     ball.size += 10;
                     ball.xSpeed /= 2;
-                    ball.ySpeed /= 2;
+                    ball.ySpeed /= 2; 
                     setTimeout( ()=> {
+                        if (!ball.started){
+                            ball.y += 10;
+                        }
                         ball.size -= 10;
                         ball.xSpeed *= 2;
                         ball.ySpeed *= 2;
-                    },8000);
+                    }, 8000);
                 }
             }
         }

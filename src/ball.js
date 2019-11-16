@@ -35,9 +35,15 @@ class Ball {
   }
   
   start() {
+    this.move(0, 0);
     this.started = true;
     this.xSpeed =  Math.random() > 0.5 ? Math.random()*3 : -Math.random()*3;
-    this.ySpeed = -5; 
+    if (this.size === 10){
+      this.ySpeed = -5; 
+    } else{
+      this.ySpeed = -2.5;
+      this.y -= 10;
+    }
   }
 
   stop() { //powrót piłki do pozycji startowej
@@ -57,50 +63,6 @@ class Ball {
     let brickWidth = brick.width;
     let brickHeight = brick.height;
     
-    // ballCollision
-      // for (let i=0; i < bricksArray.length; i++){
-      //   if ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= this.size) //bottom
-      //   && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
-      //   && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
-      //     this.ySpeed *= -1;
-      //     if (bricksArray[i][3]==2){
-      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
-      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
-      //     }
-      //     brick.delete(i);
-      //   }
-      //   if ((Math.abs(bricksArray[i][1] - this.y) <= this.size) //top
-      //   && ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= brickWidth) 
-      //   && ((Math.abs(bricksArray[i][0] - this.x) <= brickWidth)))){
-      //     this.ySpeed *= -1;
-      //     if (bricksArray[i][3]==2){
-      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
-      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
-      //     }
-      //     brick.delete(i);
-      //   }
-      //   if ((Math.abs(bricksArray[i][0] - this.x) <= this.size) //left
-      //   && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
-      //   && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
-      //     this.xSpeed *= -1;
-      //     if (bricksArray[i][3]==2){
-      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
-      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
-      //     }
-      //     brick.delete(i);
-      //   }
-      //   if ((Math.abs(bricksArray[i][0] + brickWidth - this.x) <= this.size) //right
-      //   && ((Math.abs(bricksArray[i][1] + brickHeight - this.y) <= brickHeight) 
-      //   && ((Math.abs(bricksArray[i][1] - this.y) <= brickHeight)))){
-      //     this.xSpeed *= -1;
-      //     if (bricksArray[i][3]==2){
-      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
-      //       allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
-      //     }
-      //     brick.delete(i);
-      //   }
-      // }
-    
    // ballCollision - wektorowo
    for (let i=0; i < bricksArray.length; i++){
 
@@ -117,6 +79,7 @@ class Ball {
         allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
       }
       brick.delete(i);
+      break;
       }
       if ((this.x - this.size > bricksArray[i][0] + brickWidth) //right
       && (this.x + this.xSpeed - this.size <= bricksArray[i][0] + brickWidth)){
@@ -126,15 +89,17 @@ class Ball {
           allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
         }
         brick.delete(i);
+        break;
       }
       if ((this.y + this.size < bricksArray[i][1]) //top
-      && (this.y - this.ySpeed + this.size >= bricksArray[i][1])){
+      && (this.y + this.ySpeed + this.size >= bricksArray[i][1])){
         this.ySpeed *= -1;
         if (bricksArray[i][3]==2){
           allPowerUps[Math.floor(Math.random()*allPowerUps.length)].hit=1;
           allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
         }
         brick.delete(i);
+        break;
       }
       if ((this.y - this.size > bricksArray[i][1] + brickHeight) //bottom
       && (this.y + this.ySpeed - this.size <= bricksArray[i][1] + brickHeight)){
@@ -144,19 +109,17 @@ class Ball {
           allPowerUps[Math.floor(Math.random()*allPowerUps.length)].n=i;
         }
         brick.delete(i);
+        break;
       }
     }
     if (bricksArray.length === 0) { // Wygrana jeśli wzystkie bricki zostaną usunięte
       alert('Wygrałeś!');
-      this.xSpeed = 0;
-      this.ySpeed = 0;
       window.setInterval(location.reload(true), s);
     }
   }
 
     if (this.y + this.size >= ch){ // warunek przegranej
-      alert('Przegrałeś!'); 
-      this.stop();
+      alert('Przegrałeś!');
       window.setInterval(location.reload(true), s); // odświezenie strony 
     } else if (this.y - this.size <= 0){ // odbijanie od sufitu
       this.ySpeed *= -1;
@@ -167,14 +130,25 @@ class Ball {
       this.xSpeed *= -1;
     }
 
-    // odbijanie od paddle
-    if ((this.y + this.size === ch - paddleHeight) 
-      && (this.x + this.size > paddleX)
-      && (this.x - this.size < paddleX + paddleLength)
-      && this.started){
-      this.ySpeed *= -1;
-      this.xSpeed += Math.random() > 0.5 ? -Math.random() : Math.random(); // rotacja piłki 
-      score.scoreCount += 10;
+    //odbijanie od paddle
+    if((this.x + this.xSpeed + this.size >= paddleX)
+    && (this.x + this.xSpeed - this.size <= paddleX + paddleLength)
+    && (this.y + this.ySpeed + this.size >= ch - paddleHeight)
+    && (this.y + this.ySpeed - this.size <= ch - paddleHeight)
+    && this.started){
+
+      if ((this.x + this.size < paddleX) //left
+      && (this.x + this.xSpeed + this.size >= paddleX)){
+        this.xSpeed *= -1;
+      }
+      if ((this.x - this.size > paddleX + paddleLength) //right
+      && (this.x + this.xSpeed - this.size <= paddleX + paddleLength)){
+        this.xSpeed *= -1;
+      }
+      if ((this.y + this.size < ch - paddleHeight) //top
+      && (this.y + this.ySpeed + this.size >= ch - paddleHeight)){
+        this.ySpeed *= -1;
+      }
     }
   }
 }
