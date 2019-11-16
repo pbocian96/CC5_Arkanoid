@@ -156,6 +156,7 @@ class Ball {
     if (this.y + this.size >= ch){ // warunek przegranej
       alert('Przegrałeś!'); 
       this.stop();
+      window.setInterval(location.reload(true), s); // odświezenie strony 
     } else if (this.y - this.size <= 0){ // odbijanie od sufitu
       this.ySpeed *= -1;
     }
@@ -171,7 +172,7 @@ class Ball {
       && (this.x - this.size < paddleX + paddleLength)
       && this.started){
       this.ySpeed *= -1;
-      this.xSpeed += Math.random() > 0.5 ? -Math.random() : Math.random();
+      this.xSpeed += Math.random() > 0.5 ? -Math.random() : Math.random(); // rotacja piłki 
       score.scoreCount += 10;
     }
   }
