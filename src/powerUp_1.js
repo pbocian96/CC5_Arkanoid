@@ -20,6 +20,24 @@ class PowerUp_1 extends PowerUp {
             ctx.arc(x, y + this.ySpeed, this.size*2, 0, 2 * Math.PI);
             ctx.fill();    
             
+            
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
+            ctx.lineWidth = 2;
+
+            /* ctx.beginPath();
+            ctx.moveTo(x - 5, y + this.ySpeed + 10);
+            ctx.lineTo(x + 5, y + this.ySpeed + 10);
+            ctx.lineTo(x, y + this.ySpeed);
+            ctx.closePath();
+            ctx.stroke(); */
+
+            ctx.beginPath();
+            ctx.moveTo(x - this.size, y + this.ySpeed + this.size);
+            ctx.lineTo(x + this.size, y + this.ySpeed + this.size);
+            ctx.lineTo(x, y + this.ySpeed - this.size);
+            ctx.closePath();
+            ctx.stroke();
+
             this.ySpeed +=2;
 
             if (y+this.ySpeed >= ch) {
