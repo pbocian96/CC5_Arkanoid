@@ -150,6 +150,7 @@ class Ball {
       alert('Wygrałeś!');
       this.xSpeed = 0;
       this.ySpeed = 0;
+      window.setInterval(location.reload(true), s);
     }
   }
 
