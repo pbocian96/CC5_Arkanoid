@@ -24,9 +24,7 @@ class PowerUp_2 extends PowerUp {
             this.ySpeed += 2;
 
             if (y + this.ySpeed >= ch) {
-                this.hit = 0;
-                this.ySpeed = 1;
-                this.n = 0;
+                this.reset();
             }
 
             if (y+this.ySpeed >= ch-paddle.height && x > paddle.x && x < paddle.x+paddle.length) {

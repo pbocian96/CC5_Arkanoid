@@ -15,6 +15,5 @@ class PowerUp {
         this.n = 0;
     }
     
-
 }
 export default PowerUp

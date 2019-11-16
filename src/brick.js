@@ -66,8 +66,7 @@ class Brick {
                     this.height
                   ); 
             }
-            
-        })
+        });
         
         this.loopIndex++;
         if (this.loopIndex >= this.cycleLoop.length){
@@ -89,11 +88,6 @@ class Brick {
             score.scoreCount += 100;
         }
     }
-
-    brickStyle(posX, posY) {
-        
-    }
-
 }
 export default Brick
 

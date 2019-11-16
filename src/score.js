@@ -12,8 +12,6 @@ class Score {
         ctx.beginPath();
         ctx.fillText(`SCORE: ${this.scoreCount}`, 0, this.fontSize);
     }
-
-
 }
 
 export default Score;
