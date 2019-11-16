@@ -11,7 +11,7 @@ class Brick {
         //style
         this.image = new Image(); 
         this.image.src = "src/img/bricks_ani01.png";
-        this.cycleLoop = [0, 50, 100, 100, 100, 100, 150, 150, 150, 150, 100, 100, 100, 100, 50, 50, 50, 50, 0, 0, 0, 0];
+        this.cycleLoop = [50, 50, 50, 50, 100, 100, 100, 100, 150, 150, 150, 150, 100, 100, 100, 100, 50, 50, 50, 50, 0, 0, 0, 0];
         this.loopIndex = 0;
     }
 
