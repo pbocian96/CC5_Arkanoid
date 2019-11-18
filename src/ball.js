@@ -1,4 +1,4 @@
-import { ctx, cw, ch, paddle, brick, allPowerUps, score} from './main';
+import { ctx, cw, ch, paddle, brick, allPowerUps, score, lives, ball} from './main';
 
 class Ball {
   constructor(x, height) {
@@ -122,8 +122,12 @@ class Ball {
     }
 
     if (this.y + this.size >= ch) { // warunek przegranej
-      alert('Przegrałeś!');
-      window.setInterval(location.reload(true), s); // reload gry 
+      lives.livesCount -= 1;
+      ball.stop();
+      if (lives.livesCount === 0) {
+        alert('Przegrałeś!');
+        window.setInterval(location.reload(true), s); // reload gry 
+      }
     } else if (this.y - this.size <= 0) { // odbijanie od sufitu
       this.ySpeed *= -1;
     }
