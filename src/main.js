@@ -22,8 +22,8 @@ export const powerUp1 = new PowerUp_1();
 export const powerUp2 = new PowerUp_2();
 export const powerUp3 = new PowerUp_3();
 export const powerUp4 = new PowerUp_4();
-export const allPowerUps =[];
-allPowerUps.push(powerUp1, powerUp2, powerUp3, powerUp4);
+export const allPowerUps =[PowerUp_1, PowerUp_2, PowerUp_3, PowerUp_4];
+export const allPowerUps2 = [];
 
 export const score = new Score();
 export const lives = new Lives();
@@ -42,7 +42,7 @@ const gameLoop = () => {
   paddle.draw();
   ball.draw();
   brick.draw();
-  allPowerUps.forEach(one => {one.draw()});
+  allPowerUps2.forEach(one => {one.draw()});
   score.draw();
   lives.draw();
   requestAnimationFrame(gameLoop);

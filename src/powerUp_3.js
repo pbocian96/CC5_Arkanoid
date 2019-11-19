@@ -8,17 +8,17 @@ class PowerUp_3 extends PowerUp {
             const x = brick.allBricks[this.n][0]+30;
             const y = brick.allBricks[this.n][1]+35;
             
-            this.gradient = ctx.createRadialGradient(x, y+this.ySpeed, 0, x, y+this.ySpeed, 13);
-            this.gradient.addColorStop(0.1, 'rgba(250, 250, 250, 1)');
-            this.gradient.addColorStop(0.6, 'rgba(25, 250, 2, 1)');
-            this.gradient.addColorStop(0.95, 'rgba(0,0,0, 1)');
-
+            this.gradient = ctx.createRadialGradient(x, y+this.ySpeed, 0, x, y+this.ySpeed, 20);
+            this.gradient.addColorStop(0.1, 'rgba(25, 25, 25, 0)');
+            this.gradient.addColorStop(0.3, 'rgba(250, 250, 2, 1)');
+            this.gradient.addColorStop(1, 'rgba(0,0,0, 1)');
             ctx.fillStyle = this.gradient;
-
             ctx.beginPath();
             ctx.arc(x, y+this.ySpeed, 7, 0, 2 * Math.PI);
             ctx.fill(); 
+
             this.ySpeed +=2;
+            
             if (y+this.ySpeed >= ch) {
                 this.reset();
             }

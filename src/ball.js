@@ -1,4 +1,4 @@
-import { ctx, cw, ch, paddle, brick, allPowerUps, score, lives, ball} from './main';
+import { ctx, cw, ch, paddle, brick, allPowerUps, allPowerUps2, score, lives, ball} from './main';
 
 class Ball {
   constructor(x, height) {
@@ -75,8 +75,10 @@ class Ball {
           this.xSpeed *= -1;
           if (bricksArray[i][3]==2) {
             const a = Math.floor(Math.random()*allPowerUps.length);
-            allPowerUps[a].hit=1;
-            allPowerUps[a].n=i-1;
+            const b = new allPowerUps[a]();
+            b.n=i-1;
+            b.hit=1;
+            allPowerUps2.push(b);
           }
           brick.delete(i);
           break;
@@ -86,8 +88,10 @@ class Ball {
           this.xSpeed *= -1;
           if (bricksArray[i][3]==2) {
             const a = Math.floor(Math.random()*allPowerUps.length);
-            allPowerUps[a].hit=1;
-            allPowerUps[a].n=i-1;
+            const b = new allPowerUps[a]();
+            b.n=i-1;
+            b.hit=1;
+            allPowerUps2.push(b);
           }
           brick.delete(i);
           break;
@@ -97,8 +101,10 @@ class Ball {
           this.ySpeed *= -1;
           if (bricksArray[i][3]==2) {
             const a = Math.floor(Math.random()*allPowerUps.length);
-            allPowerUps[a].hit=1;
-            allPowerUps[a].n=i-1;
+            const b = new allPowerUps[a]();
+            b.n=i-1;
+            b.hit=1;
+            allPowerUps2.push(b);
           }
           brick.delete(i);
           break;
@@ -108,8 +114,10 @@ class Ball {
           this.ySpeed *= -1;
           if (bricksArray[i][3]==2) {
             const a = Math.floor(Math.random()*allPowerUps.length);
-            allPowerUps[a].hit=1;
-            allPowerUps[a].n=i-1;
+            const b = new allPowerUps[a]();
+            b.n=i-1;
+            b.hit=1;
+            allPowerUps2.push(b);
           }
           brick.delete(i);
           break;
