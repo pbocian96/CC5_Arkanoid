@@ -8,6 +8,7 @@ class PowerUp_4 extends PowerUp {
             const x = brick.allBricks[this.n][0]+30;
             let y = brick.allBricks[this.n][1]+10;
             
+            // Power Up style
             this.gradient = ctx.createRadialGradient(x, y + this.ySpeed, 0, x, y + this.ySpeed, this.size*2 );
             this.gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0)');
             this.gradient.addColorStop(0.5, 'rgba(255, 30, 30, 1)');
@@ -21,7 +22,7 @@ class PowerUp_4 extends PowerUp {
             
             ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
             ctx.lineWidth = 2;
-
+            // Drawing triangle
             ctx.beginPath();
             ctx.moveTo(x - this.size, y + this.ySpeed + this.size);
             ctx.lineTo(x - this.size, y + this.ySpeed - this.size);

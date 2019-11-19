@@ -11,27 +11,34 @@ class Paddle {
     this.acceleration = 2;
     this.velocity = 0;
 
+    // paddle style graphic
     this.image = new Image(); 
-    this.image.src = "src/img/paddle_ani_05.png";
-    this.cycleLoop = [0, 0, 30, 30, 60, 60, 90, 90, 120, 120, 90, 90, 60, 60, 30, 30];
+    this.image.src = "src/img/paddle_ani.png";
+    
+    // animation sequence
+    this.cycleLoop = [0, 0, 30, 30, 60, 60, 90, 90, 120, 120, 90, 90, 60, 60, 30, 30]; 
     this.loopIndex = 0;
-
+    
     this.rightPressed = false;
     this.leftPressed = false;
-
+    
     window.addEventListener("keydown", (e) => {
+      // Left Arrow Key || A Key
       if(e.keyCode === 37 || e.keyCode === 65) {
         this.leftPressed = true;
       }
+      // Right Arrow Key || D Key
       if(e.keyCode === 39 || e.keyCode === 68) {
         this.rightPressed = true;
       }
     });
 
     window.addEventListener("keyup", (e) => {
+      // Left Arrow Key || A Key
       if(e.keyCode === 37 || e.keyCode === 65) {
         this.leftPressed = false;
       }
+      // Right Arrow Key || D Key
       if(e.keyCode === 39 || e.keyCode === 68) {
         this.rightPressed = false;
       }
@@ -62,11 +69,12 @@ class Paddle {
     }
   }
 
+  // paddle drawing with animation
   step() {
     ctx.drawImage(
       this.image,
       0, 
-      this.cycleLoop[this.loopIndex], 
+      this.cycleLoop[this.loopIndex],   // animation current frame
       this.image.width, 
       this.image.height/5, 
       this.x, 
@@ -74,7 +82,7 @@ class Paddle {
       this.length, 
       this.height
     ); 
-    this.loopIndex++;
+    this.loopIndex++; 
     if (this.loopIndex >= this.cycleLoop.length){
       this.loopIndex = 0;
     } 

@@ -10,7 +10,7 @@ class Brick {
 
         //style
         this.image = new Image(); 
-        this.image.src = "src/img/bricks_ani01.png";
+        this.image.src = "src/img/bricks_ani.png";
         this.cycleLoop = [50, 50, 50, 50, 100, 100, 100, 100, 150, 150, 150, 150, 100, 100, 100, 100, 50, 50, 50, 50, 0, 0, 0, 0];
         this.loopIndex = 0;
     }
@@ -87,6 +87,7 @@ class Brick {
             this.allBricks.splice(n,1);
             score.scoreCount += 100;
         }
+
     }
 }
 export default Brick
