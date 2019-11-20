@@ -12,6 +12,7 @@ export const canvas = document.querySelector('canvas');
 export const ctx = canvas.getContext('2d');
 export const cw = canvas.width;
 export const ch = canvas.height;
+export const startBtn = document.getElementById('btn-start');
 
 export const paddle = new Paddle(cw / 2);
 export const ball = new Ball(paddle.x + paddle.length / 2, paddle.height);
@@ -48,12 +49,17 @@ const gameLoop = () => {
   requestAnimationFrame(gameLoop);
 };
 
-document.addEventListener('click', e => {
-  console.log(e);
-  if(ball.started === false){
-    ball.start();
-    ball.move();
-  }
+startBtn.addEventListener('click', e => {
+  startBtn.style.display = 'none';
+  document.addEventListener('click', e => {
+    console.log(e);
+    if(ball.started === false){
+      
+      ball.start();
+      ball.move();
+    }
+  });
 });
+
 
 requestAnimationFrame(gameLoop);

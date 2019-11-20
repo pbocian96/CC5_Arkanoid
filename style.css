@@ -20,3 +20,30 @@ canvas {
   justify-content: center;
   align-items: center;
 }
+
+#btn-start {
+  position: absolute;
+  font-family: "PressStart2PRegular";
+  display: block;
+  background-color: rgba(255, 0, 255, 0.75);
+  border: none;
+  color: white;
+  padding: 20px 30px;
+  font-size: 1.5em;
+  transition: 0.5s;
+  animation: 1s textAni infinite;
+  transform: scale(1.0);
+  
+}
+
+#btn-start:hover{ 
+  transform: scale(1.1);
+  background-color: rgba(183, 0, 255, 0.75);
+  
+}
+  @keyframes textAni {
+    0% {color: rgba(255, 255, 255, 1);}
+    50% {color: rgba(255, 255, 255, 1);}
+    51% {color: rgba(255, 255, 255, 0);}
+    100% {color: rgba(255, 255, 255, 0);}
+  }
